@@ -12,6 +12,10 @@ claude
 
 Then type `/brainstorm` (with the kids!) or just `/factory` and let it guide you.
 
+## Space Bunnies (the first app)
+
+The first app lives in this repo, in `app/`. It controls a micro:bit with servos from an iPad. See `app/README.md` and `docs/`.
+
 ## The pipeline
 
 ```

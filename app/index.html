@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#14172b" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="./icon-180.png" />
+  <title>Space Bunnies</title>
+</head>
+<body>
+  <header class="bar">
+    <h1>🐰 Space Bunnies</h1>
+    <nav class="tabs" role="tablist">
+      <button role="tab" data-tab="control" aria-selected="true">🎮 Control</button>
+      <button role="tab" data-tab="program" aria-selected="false">🧩 Program</button>
+    </nav>
+    <div class="connect">
+      <span id="status" class="pill off">Not connected</span>
+      <button id="btn-connect" class="btn primary">🔗 Connect micro:bit</button>
+      <button id="btn-demo" class="btn">🧪 Demo</button>
+      <button id="btn-disconnect" class="btn" hidden>Disconnect</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="tab-control" class="tab-panel">
+      <div class="cards">
+        <article class="card" style="--accent: var(--servo)">
+          <h2>Servos</h2>
+          <div id="servos" class="servos"></div>
+          <button id="btn-center" class="btn wide">↔️ Center all</button>
+        </article>
+
+        <article class="card" style="--accent: var(--basic)">
+          <h2>LED picture</h2>
+          <div id="led-grid" class="led-grid" aria-label="Tap to draw"></div>
+          <div id="icon-row" class="chip-row"></div>
+          <div class="row">
+            <button id="btn-send-leds" class="btn primary">✨ Show it</button>
+            <button id="btn-clear-leds" class="btn">🧽 Clear</button>
+          </div>
+        </article>
+
+        <article class="card" style="--accent: var(--basic)">
+          <h2>Words</h2>
+          <form id="text-form" class="row">
+            <input id="text-input" type="text" maxlength="40" placeholder="Type a word" autocomplete="off" autocapitalize="off" spellcheck="false" />
+            <button class="btn primary">📣 Send</button>
+          </form>
+          <p class="hint">The words scroll across the micro:bit.</p>
+        </article>
+
+        <article class="card" style="--accent: var(--music)">
+          <h2>Sound</h2>
+          <div id="piano" class="piano"></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="tab-program" class="tab-panel" hidden>
+      <div class="program-bar">
+        <button id="btn-run" class="btn go">▶ Run</button>
+        <button id="btn-stop" class="btn stop" disabled>■ Stop</button>
+        <button id="btn-new" class="btn">🆕 New</button>
+        <span class="hint">Drag blocks under “when Run is pressed”.</span>
+      </div>
+      <div id="blockly" class="blockly"></div>
+    </section>
+
+    <aside id="sim" class="sim" hidden>
+      <h2>Demo micro:bit</h2>
+      <div id="sim-leds" class="sim-leds"></div>
+      <p id="sim-text" class="sim-text"></p>
+      <div id="sim-servos" class="sim-servos"></div>
+      <div class="row">
+        <button class="btn" data-press="A">A</button>
+        <button class="btn" data-press="L">logo</button>
+        <button class="btn" data-press="B">B</button>
+      </div>
+    </aside>
+  </main>
+
+  <div id="toast" class="toast" role="status" hidden></div>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

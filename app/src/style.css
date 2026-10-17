@@ -1,0 +1,130 @@
+/* Space Bunnies design tokens. Dark space background, MakeCode colors,
+   big touch targets. No UI framework. */
+:root {
+  --bg: #14172b;
+  --panel: #1d2140;
+  --panel-2: #262b52;
+  --line: #3a4180;
+  --text: #ffffff;
+  --muted: #b8bde6;
+  --basic: #1e90ff;
+  --servo: #ff8c1a;
+  --music: #e63022;
+  --input: #c90072;
+  --loops: #00aa00;
+  --led-on: #ff3b3b;
+  --led-off: #2b2f4a;
+  --ok: #2ecc71;
+  --radius: 18px;
+  --tap: 52px;
+  --font: ui-rounded, "SF Pro Rounded", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  background: radial-gradient(circle at 20% 10%, #232a5c 0, var(--bg) 60%) fixed, var(--bg);
+  color: var(--text);
+  font: 600 18px/1.3 var(--font);
+  -webkit-user-select: none; user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+  touch-action: manipulation;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  display: flex; flex-direction: column;
+}
+input { -webkit-user-select: text; user-select: text; }
+h1 { font-size: 24px; margin: 0; white-space: nowrap; }
+h2 { font-size: 20px; margin: 0 0 12px; }
+[hidden] { display: none !important; }
+
+.bar {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px;
+  padding: 12px 16px; background: var(--panel); border-bottom: 2px solid var(--line);
+}
+.tabs { display: flex; gap: 8px; }
+.tabs button {
+  min-height: var(--tap); padding: 0 18px; border-radius: 999px; border: 0;
+  background: var(--panel-2); color: var(--muted); font: inherit;
+}
+.tabs button[aria-selected="true"] { background: var(--basic); color: #fff; }
+.connect { display: flex; align-items: center; gap: 8px; margin-left: auto; flex-wrap: wrap; }
+.pill { padding: 6px 12px; border-radius: 999px; font-size: 15px; background: var(--panel-2); color: var(--muted); }
+.pill.on { background: var(--ok); color: #06240f; }
+
+.btn {
+  min-height: var(--tap); min-width: var(--tap); padding: 0 18px;
+  border-radius: 14px; border: 2px solid var(--line);
+  background: var(--panel-2); color: var(--text); font: inherit; cursor: pointer;
+}
+.btn:active { transform: scale(0.96); }
+.btn:disabled { opacity: 0.4; }
+.btn.primary { background: var(--basic); border-color: var(--basic); }
+.btn.go { background: var(--loops); border-color: var(--loops); font-size: 20px; }
+.btn.stop { background: var(--music); border-color: var(--music); }
+.btn.wide { width: 100%; }
+
+main { flex: 1; display: flex; min-height: 0; }
+.tab-panel { flex: 1; min-width: 0; overflow: auto; padding: 16px; }
+#tab-program { display: flex; flex-direction: column; gap: 12px; overflow: hidden; }
+
+.cards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+.card {
+  background: var(--panel); border-radius: var(--radius); padding: 16px;
+  border-top: 6px solid var(--accent, var(--basic));
+}
+.row { display: flex; gap: 10px; align-items: center; margin-top: 12px; }
+.row input { flex: 1; min-width: 0; }
+.hint { color: var(--muted); font-size: 15px; font-weight: 500; margin: 8px 0 0; }
+
+input[type="text"] {
+  min-height: var(--tap); padding: 0 14px; border-radius: 14px; border: 2px solid var(--line);
+  background: var(--bg); color: var(--text); font: inherit; font-size: 20px;
+}
+
+.servos { display: grid; gap: 14px; margin-bottom: 14px; }
+.servo { display: grid; grid-template-columns: 70px 1fr 56px; align-items: center; gap: 10px; }
+.servo output { text-align: right; font-variant-numeric: tabular-nums; }
+input[type="range"] { width: 100%; height: var(--tap); accent-color: var(--servo); }
+
+.led-grid, .sim-leds { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.led-grid { width: min(100%, 300px); margin: 0 auto; }
+.led {
+  aspect-ratio: 1; border-radius: 10px; border: 0; background: var(--led-off);
+  min-height: 48px; touch-action: none;
+}
+.led.on { background: var(--led-on); box-shadow: 0 0 14px var(--led-on); }
+.chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; justify-content: center; }
+.chip-row .btn { font-size: 24px; padding: 0 10px; }
+
+.piano { display: flex; gap: 6px; }
+.piano .key {
+  flex: 1; min-height: 120px; border-radius: 0 0 12px 12px; border: 0;
+  background: #f4f4ff; color: #222; font: inherit; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 10px;
+}
+.piano .key:active, .piano .key.hit { background: var(--music); color: #fff; }
+
+.program-bar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.blockly { flex: 1; min-height: 360px; border-radius: var(--radius); overflow: hidden; }
+
+.sim {
+  width: 240px; flex-shrink: 0; background: var(--panel); padding: 16px;
+  border-left: 2px solid var(--line); overflow: auto;
+}
+.sim-leds { background: #000; padding: 12px; border-radius: 14px; gap: 6px; }
+.sim-leds .led { min-height: 0; border-radius: 4px; }
+.sim-text { min-height: 1.3em; text-align: center; color: var(--led-on); font-size: 22px; margin: 8px 0; }
+.sim-servos { display: grid; gap: 6px; font-size: 15px; color: var(--muted); }
+.sim .row { justify-content: space-between; }
+
+.toast {
+  position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom)); transform: translateX(-50%);
+  background: #000c; padding: 12px 20px; border-radius: 14px; max-width: 90vw; text-align: center; z-index: 10;
+}
+
+@media (max-width: 900px) {
+  main { flex-direction: column; }
+  .sim { width: auto; border-left: 0; border-top: 2px solid var(--line); }
+  .sim-leds { width: 160px; margin: 0 auto; }
+}
