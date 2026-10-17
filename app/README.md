@@ -19,7 +19,7 @@ An iPad web app that controls a BBC micro:bit with SG90 servos on a Kitronik Com
 
 Safari cannot talk to a micro:bit. Install the free **Bluefy** browser from the App Store and open the app there. Tap **Connect micro:bit** and pick the micro:bit from the list. It shows a check mark when it is connected.
 
-Bluetooth only works on a secure (HTTPS) address, so the app must be hosted, for example on GitHub Pages. The `dist/` folder from `npm run build` is the whole app.
+Bluetooth only works on a secure (HTTPS) address, so the app is hosted on a Cloudflare Worker. See "Publish" below.
 
 ## Develop
 
@@ -30,6 +30,28 @@ npm test           # unit tests
 npm run test:e2e   # browser tests with the demo micro:bit
 npm run build      # makes dist/
 ```
+
+## Publish (Cloudflare Worker)
+
+The Worker only serves the files in `dist/`. There is no server code. The setup is in `wrangler.jsonc`.
+
+**Option A: from your computer**
+
+```
+npx wrangler login   # once, opens Cloudflare in the browser
+npm run deploy       # builds and uploads
+```
+
+Wrangler prints the address, like `https://space-bunnies.<your-name>.workers.dev`. Open that in Bluefy.
+
+**Option B: automatic on every push**
+
+In the Cloudflare dashboard, go to Workers & Pages, Create, Import a repository, and pick `micro-bit`. Use these settings:
+* Root directory: `app`
+* Build command: `npm run build`
+* Deploy command: `npx wrangler deploy`
+
+Then every push to the main branch publishes the app.
 
 ## How it works
 

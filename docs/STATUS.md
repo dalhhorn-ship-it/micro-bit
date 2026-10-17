@@ -1,13 +1,14 @@
 # Status
 
 **Phase:** first build done, waiting for a real hardware test
-**Next step:** flash the micro:bit, host the app on HTTPS, try it on the iPad in Bluefy
-**Blockers:** hosting choice (decision 5)
+**Next step:** flash the micro:bit, publish to the Cloudflare Worker, try it on the iPad in Bluefy
+**Blockers:** none
 
 ## Done
 * Brainstorm: `IDEA.md`
 * Equipment list: `EQUIPMENT.md`
 * App v0.1 in `app/`: control panel, block programs, demo micro:bit, tests
+* Cloudflare Worker setup: `app/wrangler.jsonc`, `npm run deploy`
 * micro:bit program: `app/microbit/space-bunnies.ts`
 
 ## Notes

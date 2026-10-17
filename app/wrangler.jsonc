@@ -1,0 +1,9 @@
+// Cloudflare Worker that serves the built app (dist/) as static files.
+// No server code: Cloudflare hands out the files over HTTPS, which Bluefy needs for Bluetooth.
+{
+  "name": "space-bunnies",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist"
+  }
+}
