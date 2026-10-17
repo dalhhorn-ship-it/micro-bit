@@ -27,7 +27,8 @@ Safari on iPad does not support Web Bluetooth or WebUSB. Chrome, Edge and every 
 
 ### Servos
 * The Kitronik Compact 16 board powers the servos from its own battery input, not from the micro:bit pins. It talks to the micro:bit over I2C.
-* We have 3 SG90 hobby servos and 2 Building Brick Motors. Still to check: do the Building Brick Motors move to an angle, or spin all the way around?
+* We have 3 SG90 servos (180 degrees), 2 LEGO compatible 270 degrees servos, 1 LEGO compatible 360 degrees servo that spins like a wheel, and 2 Building Brick Motors. Still to check: do the Building Brick Motors move to an angle, or spin all the way around?
+* We also have a Technic parts set (gears, axles, connectors) for building models around the servos.
 
 ### Recommended path
 Start with option A (Bluefy plus Bluetooth UART). It is the cheapest and keeps the project a single web page. Test the connection with a tiny "move servo 1" page in the first hour. If Bluefy proves flaky, fall back to option B with a Raspberry Pi serving the same page, so the app code barely changes. Build the app with a small "connection" layer so it can swap between Bluetooth and WebSocket.
@@ -87,5 +88,5 @@ Not chosen yet.
 ## Founder answers
 * micro:bit version: V2.2 (from the equipment list).
 * Servo board: Kitronik Compact 16 Servo Driver Board, powered by a 4x AA holder.
-* Servos: 3x SG90 and 2x Building Brick Motor (EF-09087).
+* Servos: 3x SG90, 2x Building Brick Motor (EF-09087), 2x 270 degrees Building Blocks Servo, 1x 360 degrees Building Blocks Servo.
 * Develop inside the `micro-bit` repo, no separate app folder.
